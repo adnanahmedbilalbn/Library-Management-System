@@ -1,0 +1,7 @@
+<h3>Results for "{{ q }}"</h3>
+<ul>
+  {% for book in books %}
+    <li>{{ book['title'] }} by {{ book['author'] }} <a href="/user/borrow/{{ book['title'] }}">Borrow</a></li>
+  {% endfor %}
+</ul>
+<a href="/user">Back</a>

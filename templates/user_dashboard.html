@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/static/lms-logo.png" class="sidebar-logo" alt="Logo">
+                <h2>User Panel</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/user">Home</a></li>
+                    <li><a href="/user/mybooks">My Borrowed Books</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="dashboard-content">
+            <header class="dashboard-header">
+                <h1>Welcome, {{ session['username'] }}</h1>
+                <form action="/user/search" class="search-bar">
+                    <input type="text" name="q" placeholder="Search by book title">
+                    <button type="submit">Search</button>
+                </form>
+            </header>
+
+            <section class="dashboard-section">
+                <div class="info-box">
+                    <h3>Search and Borrow Books</h3>
+                    <p>Use the search bar to find available books in the library system.</p>
+                </div>
+                <div class="info-box">
+                    <h3>View Borrowed Books</h3>
+                    <p>Check which books you've currently borrowed and return them when done.</p>
+                    <a href="/user/mybooks" class="btn">View My Books</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

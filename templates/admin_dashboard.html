@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="/static/lms-logo.png" class="sidebar-logo" alt="Logo" />
+        <h2>Admin Panel</h2>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/admin">Dashboard</a></li>
+          <li><a href="/logout" class="logout-link">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="dashboard-content">
+      <header class="dashboard-header">
+        <h1>Book Management</h1>
+      </header>
+
+      <section class="form-section">
+        <form method="post" action="/admin/add" class="form-box">
+          <input type="text" name="title" placeholder="Book Title" required />
+          <input type="text" name="author" placeholder="Author Name" required />
+          <button type="submit">Add Book</button>
+        </form>
+      </section>
+
+      <section class="books-section">
+        <h2>Available Books</h2>
+        <table class="books-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for book in books %}
+            <tr>
+              <td>{{ book['title'] }}</td>
+              <td>{{ book['author'] }}</td>
+              
+              <td> 
+                <a href="/admin/update/{{ book['title'] }}" class="edit-btn">Edit</a>
+
+                <a href="/admin/delete/{{ book['title'] }}" class="delete-btn">Delete</a></td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="3">No books available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

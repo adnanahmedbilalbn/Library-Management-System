@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Borrowed Books</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    /* Example inline styles - move these to your style.css */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 10px;
+    }
+    .logo {
+      width: auto;
+    }
+    h3 {
+      font-weight: 600;
+      color: #4a90e2;
+      margin: 0;
+    }
+    ul.borrowed-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px 0;
+    }
+    ul.borrowed-list li {
+      background: #f0f5ff;
+      margin-bottom: 12px;
+      padding: 15px 20px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    ul.borrowed-list li:hover {
+      background: #d7e3fc;
+    }
+    ul.borrowed-list li a {
+      background-color: #e94e4e;
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    ul.borrowed-list li a:hover {
+      background-color: #b73737;
+    }
+    .back-link {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #555;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .back-link:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="/static/lms-logo.png" alt="Logo" class="logo" />
+      <h3>My Borrowed Books</h3>
+    </header>
+
+    {% if books %}
+      <ul class="borrowed-list">
+        {% for book in books %}
+          <li>
+            <span>{{ book['title'] }}</span>
+            <a href="/user/return/{{ book['title'] }}">Return</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You have not borrowed any books yet.</p>
+    {% endif %}
+
+    <a href="/user" class="back-link">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

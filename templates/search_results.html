@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    /* Inline styles as example — move to style.css */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 10px;
+    }
+    .logo {
+      width: auto;
+    }
+    h3 {
+      font-weight: 600;
+      color: #4a90e2;
+      margin: 0;
+    }
+    ul.results-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px 0;
+    }
+    ul.results-list li {
+      background: #f0f5ff;
+      margin-bottom: 12px;
+      padding: 15px 20px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    ul.results-list li:hover {
+      background: #d7e3fc;
+    }
+    ul.results-list li a {
+      background-color: #4a90e2;
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    ul.results-list li a:hover {
+      background-color: #357ABD;
+    }
+    .back-link {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #555;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .back-link:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="/static/lms-logo.png" alt="Logo" class="logo" />
+      <h3>Results for "{{ q }}"</h3>
+    </header>
+
+    {% if books %}
+      <ul class="results-list">
+        {% for book in books %}
+          <li>
+            <span>{{ book['title'] }} by {{ book['author'] }}</span>
+              <a href="/user/borrow/{{ book['title'] }}" class="btn">Borrow</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No books found for "{{ q }}". Please try a different search.</p>
+    {% endif %}
+
+    <a href="/user" class="back-link">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

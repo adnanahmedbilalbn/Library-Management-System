@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrow Book</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 30px 40px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[readonly] {
+      background-color: #f9f9f9;
+    }
+
+    .checkbox-group {
+      margin-top: 20px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+      width: auto;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #000000;
+      background-color: rgb(174, 174, 174);
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Borrow Book</h2>
+    <form method="POST">
+      <label>Book Title:</label>
+      <input type="text" name="title" value="{{ book['title'] }}" readonly>
+
+      <label>Author:</label>
+      <input type="text" value="{{ book['author'] }}" readonly>
+
+      <label>Your Name:</label>
+      <input type="text" name="username" value="{{ session['username'] }}" readonly>
+
+      <label>Your Phone Number:</label>
+      <input type="tel" name="phone" placeholder="Enter your phone number" required>
+
+      <label>Borrow Date:</label>
+      <input type="date" name="borrow_date" value="{{ borrow_date }}" readonly>
+
+      <label>Expected Return Date:</label>
+      <input type="date" name="return_date" value="{{ return_date }}" readonly>
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" required>
+          I agree to return this book by the return date.
+        </label>
+      </div>
+
+      <button type="submit">Confirm Borrow</button>
+    </form>
+    <a href="/user" class="btn">Cancel</a>
+  </div>
+</body>
+</html>

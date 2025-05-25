@@ -1,0 +1,10 @@
+<form method="post">
+  <input name="username" required>
+  <input name="password" type="password" required>
+  <select name="role">
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+  </select>
+  <button type="submit">Signup</button>
+</form>
+{{ error if error }}

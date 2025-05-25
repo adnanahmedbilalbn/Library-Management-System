@@ -1,0 +1,11 @@
+<h2>Admin Dashboard</h2>
+<form method="post" action="/admin/add">
+  <input name="title" placeholder="Title" required>
+  <input name="author" placeholder="Author" required>
+  <button type="submit">Add Book</button>
+</form>
+<ul>
+  {% for book in books %}
+    <li>{{ book['title'] }} by {{ book['author'] }} <a href="/admin/delete/{{ book['title'] }}">Delete</a></li>
+  {% endfor %}
+</ul>
